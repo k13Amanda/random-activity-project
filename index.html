@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Activity App</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Random Activity App</h1>
+    </header>
+
+    <main>
+        <section id="activity-card">
+            <img id="image" alt="Activity image" />
+            <h2 id="suggestion">Loading activity...</h2>
+            <p id="type"></p>
+        </section>
+
+        <section id="controls">
+            <select id="participants">
+                <option value="1">1 Person</option>
+                <option value="2">2 People</option>
+                <option value="4">Group</option>
+            </select>
+            <button id="newSuggestion">New Suggestion</button>
+            <button id="saveFavorite">Save to Favorites</button>
+        </section>
+
+        <div id="alert"></div>
+    </main>
+
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>
