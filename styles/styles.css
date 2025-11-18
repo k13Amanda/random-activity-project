@@ -1,0 +1,225 @@
+
+
+
+
+
+#activity-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    margin: 20px auto;
+    max-width: 400px;
+    text-align: center;
+}
+
+#controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+#alert {
+    margin-top: 15px;
+    text-align: center;
+    background: lightblue;
+    padding: 8px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+
+
+.alert {
+    margin-top: 15px;
+    text-align: center;
+    padding: 8px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.alert.info {
+    background: lightblue;
+    color: #000;
+}
+
+.alert.success {
+    background: lightgreen;
+    color: #000;
+}
+
+.alert.error {
+    background: lightcoral;
+    color: #fff;
+}
+
+
+
+#activity-card img {
+    max-width: 100%;
+    /* Prevents overflow */
+    height: auto;
+    /* Keeps aspect ratio */
+    border-radius: 8px;
+    /* Rounded corners for polish */
+    display: block;
+    /* Removes inline spacing */
+    margin: 0 auto;
+    /* Centers the image */
+}
+
+
+#activity-card img {
+    max-width: 400px;
+    /* Limit width */
+    max-height: 250px;
+    /* Limit height */
+    object-fit: cover;
+    /* Crops nicely if too tall/wide */
+}
+
+
+@media (max-width: 600px) {
+    #activity-card img {
+        max-width: 90%;
+        /* Shrinks on small screens */
+        max-height: 200px;
+    }
+}
+
+
+/* Activity Card */
+#activity-card {
+    background: #fff;
+    /* Clean white background */
+    border-radius: 12px;
+    /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    /* Soft shadow */
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 500px;
+    /* Limit width */
+    text-align: center;
+    /* Center content */
+    transition: transform 0.2s ease;
+    /* Subtle hover effect */
+}
+
+#activity-card:hover {
+    transform: translateY(-4px);
+    /* Lift on hover */
+}
+
+/* Image inside card */
+#activity-card img {
+    max-width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    /* Crop nicely */
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Suggestion text */
+#activity-card h2 {
+    font-size: 1.4rem;
+    margin: 10px 0;
+    color: #333;
+}
+
+/* Type text */
+#activity-card p {
+    font-size: 1rem;
+    color: #666;
+    margin: 5px 0 0;
+}
+
+#alert {
+    margin-top: 15px;
+    text-align: center;
+    background: lightblue;
+    padding: 8px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+
+
+
+/* favorate page */
+
+/* Header */
+header {
+    text-align: center;
+    margin: 20px 0;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+header .back-link {
+    text-decoration: none;
+    color: #0077cc;
+    font-size: 1rem;
+}
+
+header .back-link:hover {
+    text-decoration: underline;
+}
+
+/* Favorites Container */
+#favorites-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+/* Favorites List */
+#favorites-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#favorites-list li {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#favorites-list li strong {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+#favorites-list li em {
+    font-size: 0.9rem;
+    color: #666;
+    margin-left: 8px;
+}
+
+/* Remove Button */
+#favorites-list .remove-btn {
+    background: #ff6b6b;
+    border: none;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#favorites-list .remove-btn:hover {
+    background: #e63946;
+}
