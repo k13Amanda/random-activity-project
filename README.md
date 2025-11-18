@@ -20,3 +20,5 @@ Users can filter by participants, save favorites
 
 ---
 
+Created by Amanda for a school project WDD 330.
+APIs: BoredAPI and Unsplash.

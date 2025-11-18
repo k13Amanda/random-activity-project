@@ -3,7 +3,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-const UNSPLASH_KEY = process.env.UNSPLASH_ACCESS_KEY;
+const UNSPLASH_KEY = "GDEPa_G7zFAva2TIeIByEpXJF5CJdDlbkH5i3GEid7E"
 
 const suggestionEl = document.getElementById("suggestion");
 const typeEl = document.getElementById("type");
@@ -33,18 +33,31 @@ async function fetchActivity(participants = 1) {
 
 
 async function fetchImage(activity) {
-    if (imageCache[activity]) return imageCache[activity];
-
     try {
-        const res = await fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(activity)}&client_id=YOUR_ACCESS_KEY`);
+        const res = await fetch(
+            `https://api.unsplash.com/search/photos?query=${encodeURIComponent(activity)}&client_id=${UNSPLASH_KEY}`
+        );
         const data = await res.json();
-        const imageUrl = data.results[0]?.urls?.regular || "fallback.jpg";
-        imageCache[activity] = imageUrl;
-        return imageUrl;
+        return data.results[0]?.urls?.regular || "assets/fallback.jpg";
     } catch (err) {
-        return "fallback.jpg";
+        return "assets/fallback.jpg";
     }
 }
+
+
+// async function fetchImage(activity) {
+//     if (imageCache[activity]) return imageCache[activity];
+
+//     try {
+//         const res = await fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(activity)}&client_id=YOUR_ACCESS_KEY`);
+//         const data = await res.json();
+//         const imageUrl = data.results[0]?.urls?.regular || "fallback.jpg";
+//         imageCache[activity] = imageUrl;
+//         return imageUrl;
+//     } catch (err) {
+//         return "fallback.jpg";
+//     }
+// }
 
 
 
