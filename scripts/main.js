@@ -6,6 +6,8 @@ import { showAlert } from "./alerts.js";
 const suggestionEl = document.getElementById("suggestion");
 const typeEl = document.getElementById("type");
 const imageEl = document.getElementById("image");
+const priceEl = document.getElementById("price");       // New
+const durationEl = document.getElementById("duration"); // New
 const participantsEl = document.getElementById("participants");
 const activityTypeEl = document.getElementById("activity-type");
 const newSuggestionBtn = document.getElementById("newSuggestion");
@@ -18,12 +20,25 @@ async function renderActivity(data) {
     suggestionEl.textContent = data.activity || "No activity found";
     typeEl.textContent = data.type ? `Type: ${data.type}` : "Type: unknown";
 
+    // Price formatting
+    priceEl.textContent = data.price !== undefined
+        ? `Price: ${formatPrice(data.price)}`
+        : "Price: unknown";
+
+    // Duration (if provided by API)
+    durationEl.textContent = data.duration
+        ? `Duration: ${data.duration}`
+        : "Duration: unknown";
+
     try {
         const imageUrl = await fetchImage(data.activity);
-        imageEl.src = imageUrl || "assets/fallback.jpg";
+        imageEl.src = imageUrl || "images/fallback.jpg"; // ✅ use images/ not assets/
+        imageEl.onerror = () => {
+            imageEl.src = "images/fallback.jpg";
+        };
     } catch (err) {
         console.error("Image fetch failed:", err);
-        imageEl.src = "assets/fallback.jpg";
+        imageEl.src = "images/fallback.jpg";
     }
 
     if (data.isFallback) {
@@ -57,3 +72,14 @@ saveFavoriteBtn.addEventListener("click", saveFavorite);
 window.addEventListener("load", () => {
     fetchActivity().then(renderActivity);
 });
+
+// Utility: format price nicely
+function formatPrice(value) {
+    if (value === 0) return "Free";
+    if (value <= 0.3) return "Low cost";
+    if (value <= 0.6) return "Moderate cost";
+    return "High cost";
+}
+
+
+document.getElementById("priceFill").style.width = `${data.price * 100}%`;
