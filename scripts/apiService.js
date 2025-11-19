@@ -27,12 +27,13 @@ export async function fetchImage(activity) {
             `https://api.unsplash.com/search/photos?query=${encodeURIComponent(activity)}&client_id=${UNSPLASH_KEY}`
         );
         const data = await res.json();
-        const imageUrl = data.results[0]?.urls?.regular || "assets/fallback.jpg";
+        const imageUrl = data.results[0]?.urls?.regular || "images/fallback.jpg";
 
         setCachedImage(activity, imageUrl);
         return imageUrl;
     } catch (err) {
         console.error("Error fetching image:", err);
-        return "assets/fallback.jpg";
+        return "images/fallback.jpg";
     }
 }
+
