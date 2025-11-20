@@ -1,7 +1,6 @@
-// favorites.js
-
-// Get reference to the favorites list container
+// Get references
 const favoritesListEl = document.getElementById("favorites-list");
+const emptyMessageEl = document.getElementById("empty-message");
 
 // Load favorites from localStorage
 function loadFavorites() {
@@ -14,17 +13,24 @@ function renderFavorites(favorites) {
     favoritesListEl.innerHTML = "";
 
     if (favorites.length === 0) {
-        favoritesListEl.innerHTML = "<li>No favorites yet!</li>";
+        emptyMessageEl.style.display = "block"; // show empty message
         return;
     }
 
+    emptyMessageEl.style.display = "none"; // hide empty message
+
     favorites.forEach((fav, index) => {
         const li = document.createElement("li");
+        li.classList.add("favorite-card"); // for CSS styling
+
         li.innerHTML = `
-      <strong>${fav.activity}</strong> 
-      <em>(${fav.type})</em>
+      <strong>${fav.activity}</strong><br/>
+      <em>Type: ${fav.type || "Unknown"}</em><br/>
+      ${fav.price !== undefined ? `<span>Price: ${formatPrice(fav.price)}</span><br/>` : ""}
+      ${fav.duration ? `<span>Duration: ${fav.duration}</span><br/>` : ""}
       <button data-index="${index}" class="remove-btn">Remove</button>
     `;
+
         favoritesListEl.appendChild(li);
     });
 
@@ -45,14 +51,13 @@ function removeFavorite(index) {
     loadFavorites();
 }
 
+// Utility: format price nicely
+function formatPrice(value) {
+    if (value === 0) return "Free";
+    if (value <= 0.3) return "Low cost";
+    if (value <= 0.6) return "Moderate cost";
+    return "High cost";
+}
+
 // Initialize on page load
 window.addEventListener("load", loadFavorites);
-
-
-
-
-const saveFavoriteBtn = document.getElementById("saveFavorite");
-saveFavoriteBtn.addEventListener("click", () => {
-    // logic to save current activity
-    showAlert("Activity saved to favorites!");
-});

@@ -16,7 +16,11 @@
 
     <main>
         <section id="favorites-container">
-            <ul id="favorites-list">
+            <!-- Empty state message -->
+            <p id="empty-message">No favorites saved yet. Go back and add some!</p>
+
+            <!-- Favorites list (JS will populate this) -->
+            <ul id="favorites-list" class="favorites-grid" aria-live="polite">
                 <!-- Favorite activities will be rendered here -->
             </ul>
         </section>
