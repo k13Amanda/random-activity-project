@@ -66,6 +66,86 @@ header h1 {
 }
 
 /* ================================
+   QUESTION FLOW
+   ================================ */
+#question-form {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 25px;
+    margin: 30px auto;
+    max-width: 500px;
+    text-align: center;
+    animation: fadeIn 0.6s ease;
+}
+
+#question-step {
+    margin-bottom: 20px;
+}
+
+.question-label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #1976d2;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.question-select {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 2px solid #2196f3;
+    font-size: 1rem;
+    background: #e3f2fd;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.question-select:hover {
+    background: #bbdefb;
+    border-color: #1976d2;
+}
+
+#nextBtn {
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(135deg, #42a5f5, #1976d2);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+#nextBtn:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #64b5f6, #2196f3);
+}
+
+/* Fun tip text */
+.question-tip {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 15px;
+    font-style: italic;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================================
    ACTIVITY CARD
    ================================ */
 #activity-card {
@@ -95,7 +175,6 @@ header h1 {
     font-size: 1.4rem;
     margin: 10px 0;
     color: #1976d2;
-    
 }
 
 #activity-card p {
@@ -158,42 +237,52 @@ header h1 {
 .dot.free,
 .dot.low {
     background: #4caf50;
-    /* green */
 }
 
+/* green */
 .dot.moderate {
     background: #ff9800;
-    /* orange */
 }
 
+/* orange */
 .dot.high {
     background: #f44336;
-    /* red */
 }
 
+/* red */
+
 /* ================================
-   CONTROLS
+   CONTROLS (inside card)
    ================================ */
 #controls {
     margin-top: 20px;
     display: flex;
-    gap: 10px;
+    flex-wrap: wrap;
+    /* allow wrapping on smaller screens */
+    gap: 12px;
     justify-content: center;
 }
 
-#controls select,
-#controls button {
+#controls select {
     font-family: 'Roboto', sans-serif;
     padding: 8px 12px;
     border-radius: 6px;
     border: 1px solid #ccc;
-    font-size: 1rem;
+    font-size: 0.95rem;
+    background: #fafafa;
+    cursor: pointer;
+    min-width: 120px;
 }
 
 #controls button {
+    font-family: 'Roboto', sans-serif;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 500;
     background: #2196f3;
     color: #fff;
-    border: none;
     cursor: pointer;
     transition: background 0.3s ease;
 }
@@ -201,35 +290,6 @@ header h1 {
 #controls button:hover {
     background: #1976d2;
 }
-
-#sort-duration {
-    padding: 6px 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-family: 'Roboto', sans-serif;
-}
-
-.favorites-controls {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 15px;
-  gap: 10px;
-  font-size: 0.95rem;
-}
-
-#sort-cost {
-  padding: 6px 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-family: 'Roboto', sans-serif;
-}
-#cost-level {
-    padding: 6px 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-family: 'Roboto', sans-serif;
-}
-
 
 /* ================================
    ALERTS

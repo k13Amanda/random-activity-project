@@ -13,18 +13,23 @@
         <img src="images/icon.png" alt="App Icon" class="app-icon" />
         <h1>Random Activity App</h1>
 
-        <!-- Favorites link aligned to the right -->
         <nav class="header-nav">
             <a href="favorites.html" class="favorites-link">⭐ View Favorites</a>
         </nav>
     </header>
 
     <main>
-        <!-- Intro message -->
+        <!-- Conversational intro -->
         <p class="intro-message">I'm bored, what should I do?</p>
 
-        <!-- Activity Card -->
-        <section id="activity-card">
+        <!-- Step-by-step question flow -->
+        <section id="question-form">
+            <div id="question-step"></div>
+            <button id="nextBtn">Next</button>
+        </section>
+
+        <!-- Activity Card (hidden until answers complete) -->
+        <section id="activity-card" style="display:none;">
             <img id="image" alt="Activity image" />
             <h2 id="suggestion">Loading activity...</h2>
             <p id="type"></p>
@@ -42,39 +47,38 @@
                 <span class="legend-item"><span class="dot moderate"></span> Moderate</span>
                 <span class="legend-item"><span class="dot high"></span> High</span>
             </div>
-        </section>
 
-        <!-- Controls -->
-        <section id="controls">
-            <select id="participants">
-                <option value="1">1 Person</option>
-                <option value="2">2 People</option>
-                <option value="4">Group</option>
-            </select>
+            <!-- Controls (drop-downs return here after first suggestion) -->
+            <section id="controls">
+                <select id="participants">
+                    <option value="1">1 Person</option>
+                    <option value="2">2 People</option>
+                    <option value="4">Group</option>
+                </select>
 
-            <select id="activity-type">
-                <option value="">Any Type</option>
-                <option value="education">Education</option>
-                <option value="recreational">Recreational</option>
-                <option value="social">Social</option>
-                <option value="charity">Charity</option>
-                <option value="cooking">Cooking</option>
-                <option value="relaxation">Relaxation</option>
-                <option value="music">Music</option>
-                <option value="busywork">Busywork</option>
-            </select>
+                <select id="activity-type">
+                    <option value="">Any Type</option>
+                    <option value="education">Education</option>
+                    <option value="recreational">Recreational</option>
+                    <option value="social">Social</option>
+                    <option value="charity">Charity</option>
+                    <option value="cooking">Cooking</option>
+                    <option value="relaxation">Relaxation</option>
+                    <option value="music">Music</option>
+                    <option value="busywork">Busywork</option>
+                </select>
 
-            <!-- Cost level filter -->
-            <select id="cost-level">
-                <option value="">Any cost</option>
-                <option value="free">Free</option>
-                <option value="low">Low</option>
-                <option value="moderate">Moderate</option>
-                <option value="high">High</option>
-            </select>
+                <select id="cost-level">
+                    <option value="">Any cost</option>
+                    <option value="free">Free</option>
+                    <option value="low">Low</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="high">High</option>
+                </select>
 
-            <button id="newSuggestion">New Suggestion</button>
-            <button id="saveFavorite">Save to Favorites</button>
+                <button id="newSuggestion">New Suggestion</button>
+                <button id="saveFavorite">Save to Favorites</button>
+            </section>
         </section>
 
         <!-- Alert -->
