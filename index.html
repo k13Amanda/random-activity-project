@@ -1,3 +1,5 @@
+<!-- index.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +27,7 @@
         <!-- Step-by-step question flow -->
         <section id="question-form">
             <div id="question-step"></div>
-            <button id="nextBtn">Next</button>
+            <button id="nextBtn">Next ➡️</button>
         </section>
 
         <!-- Activity Card (hidden until answers complete) -->
@@ -50,31 +52,9 @@
 
             <!-- Controls (drop-downs return here after first suggestion) -->
             <section id="controls">
-                <select id="participants">
-                    <option value="1">1 Person</option>
-                    <option value="2">2 People</option>
-                    <option value="4">Group</option>
-                </select>
-
-                <select id="activity-type">
-                    <option value="">Any Type</option>
-                    <option value="education">Education</option>
-                    <option value="recreational">Recreational</option>
-                    <option value="social">Social</option>
-                    <option value="charity">Charity</option>
-                    <option value="cooking">Cooking</option>
-                    <option value="relaxation">Relaxation</option>
-                    <option value="music">Music</option>
-                    <option value="busywork">Busywork</option>
-                </select>
-
-                <select id="cost-level">
-                    <option value="">Any cost</option>
-                    <option value="free">Free</option>
-                    <option value="low">Low</option>
-                    <option value="moderate">Moderate</option>
-                    <option value="high">High</option>
-                </select>
+                <select id="participants"></select>
+                <select id="activity-type"></select>
+                <select id="cost-level"></select>
 
                 <button id="newSuggestion">New Suggestion</button>
                 <button id="saveFavorite">Save to Favorites</button>

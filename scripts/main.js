@@ -68,7 +68,7 @@ async function renderActivity(data) {
         imageEl.src = "images/fallback.jpg";
     }
 
-    showAlert("New activity loaded!", "success");
+    showAlert("🎉 New activity loaded!", "success");
     currentActivity = data;
 }
 
@@ -78,7 +78,7 @@ function saveFavorite() {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     favorites.push(currentActivity);
     localStorage.setItem("favorites", JSON.stringify(favorites));
-    showAlert("Activity saved to favorites!", "success");
+    showAlert("⭐ Activity saved to favorites!", "success");
 }
 
 // Fetch multiple, filter by cost
@@ -98,41 +98,41 @@ async function getFilteredSuggestion(participants, type, costTier) {
     return suggestions[0];
 }
 
-// Wizard steps
+// Wizard steps with fun text + emojis
 function showStep() {
     if (step === 0) {
         questionStepEl.innerHTML = `
-      <label>How many people?</label>
-      <select id="participantsQ">
-        <option value="1">1 Person</option>
-        <option value="2">2 People</option>
-        <option value="4">Group</option>
+      <p class="question-text">👥 First things first… who’s hanging out today?</p>
+      <select id="participantsQ" class="question-select">
+        <option value="1">Just me, solo adventure ✨</option>
+        <option value="2">Me + a buddy 👫</option>
+        <option value="4">A whole crew 🎉</option>
       </select>
     `;
     } else if (step === 1) {
         questionStepEl.innerHTML = `
-      <label>What type of activity?</label>
-      <select id="activityTypeQ">
-        <option value="">Any Type</option>
-        <option value="education">Education</option>
-        <option value="recreational">Recreational</option>
-        <option value="social">Social</option>
-        <option value="charity">Charity</option>
-        <option value="cooking">Cooking</option>
-        <option value="relaxation">Relaxation</option>
-        <option value="music">Music</option>
-        <option value="busywork">Busywork</option>
+      <p class="question-text">🎨 What vibe are you feeling right now?</p>
+      <select id="activityTypeQ" class="question-select">
+        <option value="">Surprise me 🤔</option>
+        <option value="education">Learn something new 📚</option>
+        <option value="recreational">Just for fun 😎</option>
+        <option value="social">Social 🗣️</option>
+        <option value="charity">Do some good ❤️</option>
+        <option value="cooking">Cook it up 🍳</option>
+        <option value="relaxation">Chill time 🛋️</option>
+        <option value="music">Jam out 🎶</option>
+        <option value="busywork">Keep busy 📝</option>
       </select>
     `;
     } else if (step === 2) {
         questionStepEl.innerHTML = `
-      <label>What cost level?</label>
-      <select id="costLevelQ">
-        <option value="">Any cost</option>
-        <option value="free">Free</option>
-        <option value="low">Low</option>
-        <option value="moderate">Moderate</option>
-        <option value="high">High</option>
+      <p class="question-text">💰 How’s your wallet feeling today?</p>
+      <select id="costLevelQ" class="question-select">
+        <option value="">Doesn’t matter, surprise me 🎲</option>
+        <option value="free">Free please 🙌</option>
+        <option value="low">Cheap thrills 💵</option>
+        <option value="moderate">Middle of the road ⚖️</option>
+        <option value="high">Treat yourself 💎</option>
       </select>
     `;
     } else {
@@ -140,9 +140,34 @@ function showStep() {
         questionFormEl.style.display = "none";
         activityCardEl.style.display = "block";
 
-        // Copy answers into the permanent dropdowns so user sees them
+        // Copy answers into permanent dropdowns
+        participantsEl.innerHTML = `
+      <option value="1">1 Person</option>
+      <option value="2">2 People</option>
+      <option value="4">Group</option>
+    `;
         participantsEl.value = answers.participants;
+
+        activityTypeEl.innerHTML = `
+      <option value="">Any Type</option>
+      <option value="education">Education</option>
+      <option value="recreational">Recreational</option>
+      <option value="social">Social</option>
+      <option value="charity">Charity</option>
+      <option value="cooking">Cooking</option>
+      <option value="relaxation">Relaxation</option>
+      <option value="music">Music</option>
+      <option value="busywork">Busywork</option>
+    `;
         activityTypeEl.value = answers.type;
+
+        costLevelEl.innerHTML = `
+      <option value="">Any cost</option>
+      <option value="free">Free</option>
+      <option value="low">Low</option>
+      <option value="moderate">Moderate</option>
+      <option value="high">High</option>
+    `;
         costLevelEl.value = answers.cost;
 
         getFilteredSuggestion(answers.participants, answers.type, answers.cost)
