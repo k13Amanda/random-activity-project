@@ -129,7 +129,7 @@ footer p {
     text-align: center;
     font-size: 2rem;
     font-weight: 500;
-    margin: 60px 0;
+    margin: 40px 0;
 }
 
 /* ================================
@@ -218,10 +218,11 @@ footer p {
     text-align: center;
 }
 
-/* Activity card specific */
 #activity-card {
-    max-width: 500px;
-    transition: transform 0.2s ease;
+    max-width: 650px;
+    /* was 500px */
+    margin: 20px auto;
+    padding: 20px;
 }
 
 #activity-card:hover {
@@ -411,5 +412,84 @@ footer p {
 }
 
 
+/* ================================
+   Responsive grid adjustments
+   ================================ */
+
+/* Small screens (phones) */
+@media (max-width: 600px) {
+    .favorites-grid {
+        grid-template-columns: 1fr;
+        /* single column */
+    }
+
+    #controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #controls select,
+    #controls button {
+        width: 100%;
+    }
+}
+
+/* Medium screens (tablets) */
+@media (min-width: 601px) and (max-width: 1023px) {
+    .favorites-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 per row */
+    }
+}
+
+/* Large screens (desktops) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .favorites-grid {
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 per row */
+    }
+}
+
+/* Extra large screens (wide desktops, ultrawide monitors) */
+@media (min-width: 1440px) {
+    .favorites-grid {
+        grid-template-columns: repeat(4, 1fr);
+        /* cap at 4 per row */
+        max-width: 1200px;
+        /* prevent cards from stretching too wide */
+        margin: 0 auto;
+        /* keep centered */
+    }
+}
 
 
+
+
+/* Favorites section wider */
+.favorites-section {
+    max-width: 900px;
+    /* was 600px */
+    margin: 20px auto;
+    padding: 10px;
+}
+
+/* Grid layout wider cards */
+.favorites-grid {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    /* was 220px */
+    gap: 20px;
+    /* slightly more breathing room */
+}
+
+/* Favorite card */
+.favorite-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 16px;
+    /* a bit more padding */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
