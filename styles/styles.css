@@ -314,6 +314,26 @@ footer p {
     background: #f44336;
 }
 
+
+.card h2,
+.favorite-card strong {
+    font-size: 1.4rem;
+}
+
+.card p,
+.favorite-card em,
+.favorite-card span {
+    font-size: 1.1rem;
+}
+
+
+#wizard h2,
+#wizard .question {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
 /* ================================
    CONTROLS (inside card)
    ================================ */
