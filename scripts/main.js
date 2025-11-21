@@ -21,30 +21,43 @@ const costLevelEl = document.getElementById("cost-level");
 const newSuggestionBtn = document.getElementById("newSuggestion");
 const saveFavoriteBtn = document.getElementById("saveFavorite");
 
+// Joke elements
+const jokeText = document.getElementById("jokeText");
+const saveJokeBtn = document.getElementById("saveJokeBtn");
+
 let currentActivity = null;
 let step = 0;
 let answers = { participants: null, type: null, cost: null };
 
-// Helpers
+// -------------------- Helpers --------------------
 function formatPrice(value) {
     if (value === 0) return "Free";
     if (value <= 0.3) return "Low cost";
     if (value <= 0.6) return "Moderate cost";
     return "High cost";
 }
+
 function getCostTier(value) {
     if (value === 0) return "free";
     if (value <= 0.3) return "low";
     if (value <= 0.6) return "moderate";
     return "high";
 }
+
 function getPriceColor(value) {
     if (value === 0 || value <= 0.3) return "#4caf50";
     if (value <= 0.6) return "#ff9800";
     return "#f44336";
 }
 
-// Render activity
+// Generic localStorage saver
+function saveToFavorites(key, item) {
+    const list = JSON.parse(localStorage.getItem(key)) || [];
+    list.push(item);
+    localStorage.setItem(key, JSON.stringify(list));
+}
+
+// -------------------- Activities --------------------
 async function renderActivity(data) {
     suggestionEl.textContent = data.activity || "No activity found";
     typeEl.textContent = data.type ? `Type: ${data.type}` : "Type: unknown";
@@ -72,16 +85,12 @@ async function renderActivity(data) {
     currentActivity = data;
 }
 
-// Save favorite
 function saveFavorite() {
     if (!currentActivity) return;
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    favorites.push(currentActivity);
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+    saveToFavorites("favorites", currentActivity);
     showAlert("⭐ Activity saved to favorites!", "success");
 }
 
-// Fetch multiple, filter by cost
 async function getFilteredSuggestion(participants, type, costTier) {
     const batchSize = 6;
     const suggestions = [];
@@ -98,7 +107,7 @@ async function getFilteredSuggestion(participants, type, costTier) {
     return suggestions[0];
 }
 
-// Wizard steps with fun text + emojis
+// Wizard steps
 function showStep() {
     if (step === 0) {
         questionStepEl.innerHTML = `
@@ -136,38 +145,11 @@ function showStep() {
       </select>
     `;
     } else {
-        // All answers collected -> fetch and show card
         questionFormEl.style.display = "none";
         activityCardEl.style.display = "block";
 
-        // Copy answers into permanent dropdowns
-        participantsEl.innerHTML = `
-      <option value="1">1 Person</option>
-      <option value="2">2 People</option>
-      <option value="4">Group</option>
-    `;
         participantsEl.value = answers.participants;
-
-        activityTypeEl.innerHTML = `
-      <option value="">Any Type</option>
-      <option value="education">Education</option>
-      <option value="recreational">Recreational</option>
-      <option value="social">Social</option>
-      <option value="charity">Charity</option>
-      <option value="cooking">Cooking</option>
-      <option value="relaxation">Relaxation</option>
-      <option value="music">Music</option>
-      <option value="busywork">Busywork</option>
-    `;
         activityTypeEl.value = answers.type;
-
-        costLevelEl.innerHTML = `
-      <option value="">Any cost</option>
-      <option value="free">Free</option>
-      <option value="low">Low</option>
-      <option value="moderate">Moderate</option>
-      <option value="high">High</option>
-    `;
         costLevelEl.value = answers.cost;
 
         getFilteredSuggestion(answers.participants, answers.type, answers.cost)
@@ -175,7 +157,26 @@ function showStep() {
     }
 }
 
-// Wizard: next button behavior
+// -------------------- Jokes --------------------
+async function loadJokeOfTheDay() {
+    try {
+        const res = await fetch("https://official-joke-api.appspot.com/random_joke");
+        const joke = await res.json();
+        jokeText.textContent = `${joke.setup} — ${joke.punchline}`;
+        jokeText.dataset.currentJoke = JSON.stringify(joke);
+    } catch (err) {
+        jokeText.textContent = "Oops, couldn’t load a joke today 😢";
+    }
+}
+
+function saveJoke() {
+    const currentJoke = jokeText.dataset.currentJoke;
+    if (!currentJoke) return;
+    saveToFavorites("favoriteJokes", JSON.parse(currentJoke));
+    showAlert("⭐ Joke saved to favorites!", "success");
+}
+
+// -------------------- Event Listeners --------------------
 nextBtn.addEventListener("click", () => {
     if (step === 0) {
         answers.participants = document.getElementById("participantsQ").value;
@@ -188,7 +189,6 @@ nextBtn.addEventListener("click", () => {
     showStep();
 });
 
-// Card actions (after wizard)
 newSuggestionBtn.addEventListener("click", async () => {
     const participants = participantsEl.value;
     const type = activityTypeEl.value;
@@ -199,8 +199,10 @@ newSuggestionBtn.addEventListener("click", async () => {
 });
 
 saveFavoriteBtn.addEventListener("click", saveFavorite);
+saveJokeBtn.addEventListener("click", saveJoke);
 
-// Initialize wizard on load
+// -------------------- Initialize --------------------
 window.addEventListener("load", () => {
     showStep();
+    loadJokeOfTheDay();
 });

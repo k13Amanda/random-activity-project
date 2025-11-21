@@ -1,69 +1,105 @@
-<!-- index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Random Activity App</title>
+    <title>Random Activity Generator</title>
     <link rel="stylesheet" href="styles/styles.css" />
 </head>
 
 <body>
     <header>
-        <img src="images/icon.png" alt="App Icon" class="app-icon" />
-        <h1>Random Activity App</h1>
-
-        <nav class="header-nav">
-            <a href="favorites.html" class="favorites-link">⭐ View Favorites</a>
-        </nav>
+        <div class="header-left">
+            <img src="images/icon.png" alt="App Icon" class="app-icon" />
+            <h1>Random Activity Generator</h1>
+        </div>
+        <a href="favorites.html" class="favorites-link">⭐ View Favorites</a>
     </header>
 
     <main>
-        <!-- Conversational intro -->
-        <p class="intro-message">I'm bored, what should I do?</p>
-
-        <!-- Step-by-step question flow -->
-        <section id="question-form">
-            <div id="question-step"></div>
-            <button id="nextBtn">Next ➡️</button>
+        <!-- Intro -->
+        <section class="intro-message">
+            <p>✨ I'm board, what should I do?</p>
         </section>
 
-        <!-- Activity Card (hidden until answers complete) -->
-        <section id="activity-card" style="display:none;">
-            <img id="image" alt="Activity image" />
-            <h2 id="suggestion">Loading activity...</h2>
-            <p id="type"></p>
+        <!-- Wizard Form -->
+        <section id="question-form" class="card">
+            <div id="question-step"></div>
+            <button id="nextBtn" class="btn btn-primary">Next ➡️</button>
+            <p class="question-tip">Answer a few quick questions to get your perfect activity!</p>
+        </section>
 
-            <!-- Price bar inside the card -->
+        <!-- Activity Card -->
+        <section id="activity-card" class="card hidden">
+            <img id="image" src="images/fallback.jpg" alt="Activity image" />
+            <h2 id="suggestion">Your activity will appear here</h2>
+            <p id="type">Type: unknown</p>
+
+            <!-- Price bar -->
             <div class="price-bar">
                 <div id="priceFill" class="price-fill"></div>
             </div>
-            <p class="price-context">Relative cost will appear here</p>
+            <p class="price-context">Cost information not available</p>
 
-            <!-- Legend for price bar -->
+            <!-- Price legend dots -->
             <div class="price-legend">
-                <span class="legend-item"><span class="dot free"></span> Free</span>
-                <span class="legend-item"><span class="dot low"></span> Low</span>
-                <span class="legend-item"><span class="dot moderate"></span> Moderate</span>
-                <span class="legend-item"><span class="dot high"></span> High</span>
+                <div class="legend-item">
+                    <span class="dot free"></span> Free / Low
+                </div>
+                <div class="legend-item">
+                    <span class="dot moderate"></span> Moderate
+                </div>
+                <div class="legend-item">
+                    <span class="dot high"></span> High
+                </div>
             </div>
 
-            <!-- Controls (drop-downs return here after first suggestion) -->
-            <section id="controls">
-                <select id="participants"></select>
-                <select id="activity-type"></select>
-                <select id="cost-level"></select>
 
-                <button id="newSuggestion">New Suggestion</button>
-                <button id="saveFavorite">Save to Favorites</button>
-            </section>
+            <!-- Controls -->
+            <div id="controls">
+                <select id="participants">
+                    <option value="1">1 Person</option>
+                    <option value="2">2 People</option>
+                    <option value="4">Group</option>
+                </select>
+
+                <select id="activity-type">
+                    <option value="">Any Type</option>
+                    <option value="education">Education</option>
+                    <option value="recreational">Recreational</option>
+                    <option value="social">Social</option>
+                    <option value="charity">Charity</option>
+                    <option value="cooking">Cooking</option>
+                    <option value="relaxation">Relaxation</option>
+                    <option value="music">Music</option>
+                    <option value="busywork">Busywork</option>
+                </select>
+
+                <select id="cost-level">
+                    <option value="">Any cost</option>
+                    <option value="free">Free</option>
+                    <option value="low">Low</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="high">High</option>
+                </select>
+
+                <button id="newSuggestion" class="btn btn-primary">🔄 New Suggestion</button>
+                <button id="saveFavorite" class="btn btn-success">⭐ Save Favorite</button>
+            </div>
+            
         </section>
+        <!-- Alert container -->
+        <div id="alert" class="alert"></div>
 
-        <!-- Alert -->
-        <div id="alert" class="alert" role="alert"></div>
     </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>😂 Joke of the Day</p>
+        <div id="jokeText">Loading joke...</div>
+        <button id="saveJokeBtn" class="btn btn-success">Save Joke</button>
+    </footer>
 
     <script type="module" src="scripts/main.js"></script>
 </body>

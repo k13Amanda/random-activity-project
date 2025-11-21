@@ -4,27 +4,37 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Saved Activities</title>
+    <title>Saved Favorites</title>
     <link rel="stylesheet" href="styles/styles.css" />
 </head>
 
 <body>
     <header>
-        <h1>Saved Favorites</h1>
-        <a href="index.html" class="back-link">← Back to Suggestions</a>
+        <div class="header-left">
+            <img src="images/icon.png" alt="App Icon" class="app-icon" />
+            <h1>Saved Favorites</h1>
+        </div>
+        <a href="index.html" class="favorites-link">← Back to Suggestions</a>
     </header>
 
     <main>
-        <section id="favorites-container">
-            <!-- Empty state message -->
+        <!-- Activities Section -->
+        <section id="favoritesActivities" class="favorites-section">
+            <h2>⭐ Saved Activities</h2>
             <p id="empty-message">No favorites saved yet. Go back and add some!</p>
-
-            <!-- Favorites list (JS will populate this) -->
             <ul id="favorites-list" class="favorites-grid" aria-live="polite">
                 <!-- Favorite activities will be rendered here -->
             </ul>
         </section>
+
+        <!-- Jokes Section -->
+        <section id="favoritesJokes" class="favorites-section">
+            <h2>😂 Saved Jokes</h2>
+            <div id="jokesContainer"></div>
+        </section>
     </main>
+
+
 
     <script type="module" src="scripts/favorites.js"></script>
 </body>
