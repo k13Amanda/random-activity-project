@@ -53,10 +53,77 @@ header h1 {
     /* darker blue on hover */
 }
 
+/* Hide elements by default */
+.hidden {
+    display: none;
+}
 
+/* Header left container for icon + title */
+.header-left {
+    display: flex;
+    align-items: center;
+}
 
 /* ================================
-   Intro message
+   FOOTER
+   ================================ */
+footer {
+    background: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+    border-top: 2px solid #ddd;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+footer p {
+    margin: 0 0 10px;
+    font-weight: 500;
+}
+
+/* ================================
+   BUTTONS (shared base + variants)
+   ================================ */
+.btn {
+    font-family: 'Roboto', sans-serif;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+    background: #2196f3;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #1976d2;
+}
+
+.btn-success {
+    background: #4caf50;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background: #388e3c;
+}
+
+.btn-danger {
+    background: #f44336;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background: #d32f2f;
+}
+
+/* ================================
+   INTRO MESSAGE
    ================================ */
 .intro-message {
     text-align: center;
@@ -66,16 +133,94 @@ header h1 {
 }
 
 /* ================================
-   ACTIVITY CARD
+   QUESTION FLOW
    ================================ */
-#activity-card {
+#question-form {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 25px;
+    margin: 30px auto;
+    max-width: 500px;
+    text-align: center;
+    animation: fadeIn 0.6s ease;
+}
+
+#question-step {
+    margin-bottom: 20px;
+}
+
+.question-label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #1976d2;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.question-select {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 2px solid #2196f3;
+    font-size: 1rem;
+    background: #e3f2fd;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.question-select:hover {
+    background: #bbdefb;
+    border-color: #1976d2;
+}
+
+#nextBtn {
+    composes: btn btn-primary;
+    padding: 10px 18px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+#nextBtn:hover {
+    transform: scale(1.05);
+}
+
+/* Fun tip text */
+.question-tip {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 15px;
+    font-style: italic;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================================
+   CARD (shared base)
+   ================================ */
+.card {
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     padding: 20px;
     margin: 20px auto;
-    max-width: 500px;
     text-align: center;
+}
+
+/* Activity card specific */
+#activity-card {
+    max-width: 500px;
     transition: transform 0.2s ease;
 }
 
@@ -95,7 +240,6 @@ header h1 {
     font-size: 1.4rem;
     margin: 10px 0;
     color: #1976d2;
-    
 }
 
 #activity-card p {
@@ -108,7 +252,6 @@ header h1 {
 .price-bar {
     width: 100%;
     background: #e3f2fd;
-    /* very light blue */
     border-radius: 6px;
     overflow: hidden;
     margin: 10px 0;
@@ -117,12 +260,10 @@ header h1 {
 .price-fill {
     height: 10px;
     background: #2196f3;
-    /* main blue */
     width: 0%;
     transition: width 0.3s ease;
 }
 
-/* Price context text */
 .price-context {
     font-size: 0.9rem;
     color: #555;
@@ -131,7 +272,6 @@ header h1 {
     font-style: italic;
 }
 
-/* Price legend */
 .price-legend {
     display: flex;
     justify-content: center;
@@ -154,118 +294,82 @@ header h1 {
     display: inline-block;
 }
 
-/* Dot colors */
 .dot.free,
 .dot.low {
     background: #4caf50;
-    /* green */
 }
 
 .dot.moderate {
     background: #ff9800;
-    /* orange */
 }
 
 .dot.high {
     background: #f44336;
-    /* red */
 }
 
 /* ================================
-   CONTROLS
+   CONTROLS (inside card)
    ================================ */
 #controls {
     margin-top: 20px;
     display: flex;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 12px;
     justify-content: center;
 }
 
-#controls select,
-#controls button {
+#controls select {
     font-family: 'Roboto', sans-serif;
     padding: 8px 12px;
     border-radius: 6px;
     border: 1px solid #ccc;
-    font-size: 1rem;
-}
-
-#controls button {
-    background: #2196f3;
-    color: #fff;
-    border: none;
+    font-size: 0.95rem;
+    background: #fafafa;
     cursor: pointer;
-    transition: background 0.3s ease;
+    min-width: 120px;
 }
-
-#controls button:hover {
-    background: #1976d2;
-}
-
-#sort-duration {
-    padding: 6px 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-family: 'Roboto', sans-serif;
-}
-
-.favorites-controls {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 15px;
-  gap: 10px;
-  font-size: 0.95rem;
-}
-
-#sort-cost {
-  padding: 6px 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-family: 'Roboto', sans-serif;
-}
-#cost-level {
-    padding: 6px 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-family: 'Roboto', sans-serif;
-}
-
 
 /* ================================
    ALERTS
    ================================ */
 .alert {
-    margin-top: 15px;
+    margin: 15px auto;
+    max-width: 500px;
     text-align: center;
-    padding: 8px;
-    border-radius: 4px;
+    padding: 10px 14px;
+    border-radius: 6px;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.4s ease, transform 0.3s ease;
     font-weight: 500;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px);
+}
+
+.alert.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .alert.info {
     background: #64b5f6;
-    /* light blue */
     color: #fff;
 }
 
 .alert.success {
     background: #4caf50;
-    /* green accent */
     color: #fff;
 }
 
 .alert.error {
     background: #f44336;
-    /* red accent */
     color: #fff;
 }
 
 /* ================================
-   FAVORITES PAGE
+   FAVORITES PAGE (shared layout)
    ================================ */
-#favorites-container {
+.favorites-section {
     max-width: 600px;
     margin: 20px auto;
     padding: 10px;
@@ -284,18 +388,28 @@ header h1 {
     border-radius: 8px;
     padding: 12px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-#favorites-list .remove-btn {
-    background: #f44336;
-    border: none;
-    color: #fff;
+.favorite-card .remove-btn {
+    font-family: 'Roboto', sans-serif;
     padding: 6px 10px;
     border-radius: 6px;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    background: #f44336;
+    /* red */
+    color: #fff;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: background 0.3s ease;
 }
 
-#favorites-list .remove-btn:hover {
+.favorite-card .remove-btn:hover {
     background: #d32f2f;
+    /* darker red on hover */
 }
+
+
+
+

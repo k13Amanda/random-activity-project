@@ -1,5 +1,3 @@
-
-
 // alerts.js
 export function showAlert(message, type = "info") {
     const alertEl = document.getElementById("alert");
@@ -7,11 +5,12 @@ export function showAlert(message, type = "info") {
 
     // Apply base styles
     alertEl.textContent = message;
-    alertEl.className = `alert ${type}`;
+    alertEl.className = `alert ${type} show`; // use .show for CSS animation
     alertEl.style.opacity = 1;
 
-    // Auto-hide after 2 seconds
+    // Auto-hide after 6 seconds
     setTimeout(() => {
+        alertEl.className = "alert"; 
         alertEl.style.opacity = 0;
-    }, 2000);
+    }, 6000); 
 }
